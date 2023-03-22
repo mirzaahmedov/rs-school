@@ -1,0 +1,78 @@
+.Grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  padding: 2rem;
+}
+.Card {
+  position: relative;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.Card:hover {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+.Category {
+  display: inline-block;
+  margin: 1rem 0;
+  font-size: 1rem;
+  color: #888888;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.Brand {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-bottom-left-radius: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: violet;
+  background: #ffffff;
+  text-decoration: none;
+}
+.Name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.Description {
+  font-size: 1rem;
+  color: #888888;
+}
+.Picture {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.Details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.Price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: violet;
+}
+.Rating {
+  display: block;
+  width: 2.4rem;
+  height: 2.4rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 50%;
+  font-weight: bold;
+  color: violet;
+  border: 2px solid violet;
+}
+.Reviews {
+  font-size: 1rem;
+  color: #888888;
+}
+.Icon {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}

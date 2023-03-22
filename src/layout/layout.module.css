@@ -1,0 +1,22 @@
+.Navlinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  gap: 2rem;
+}
+.Navlink {
+  font-weight: 600;
+  color: #121212;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.Navlink:hover {
+  color: #434343;
+}
+.Navlink:active {
+  color: violet;
+}
+.Navlink:global(.active) {
+  color: #888888;
+}
