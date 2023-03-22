@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
 
 import Home from "./pages/Home"
+import Forms from "./pages/Forms"
 import Layout from "./layout/Layout";
 
 const router = createBrowserRouter([
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <div>About</div>,
+      },
+      {
+        path: "/forms",
+        element: <Forms />,
       },
       {
         path: "/404",
