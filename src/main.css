@@ -14,3 +14,42 @@ textarea,
 select {
   font: inherit;
 }
+
+form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+/* gap between form elements */
+form > * {
+  display: block;
+  margin-bottom: 10px;
+}
+/* style input fields */
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+label.invalid {
+  color: red;
+}
+
+/* style the submit button */
+button[type="submit"] {
+  appearance: none;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
