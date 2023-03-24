@@ -1,6 +1,6 @@
 import { Component } from 'react'
-import Customers, { Customer } from "../features/Customers"
-import Form from "../features/Form"
+import Customers, { Customer } from "../features/customers/Customers"
+import Form from "../features/form/Form"
 
 type Props = {
 

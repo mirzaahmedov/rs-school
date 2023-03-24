@@ -1,5 +1,5 @@
 import { Component } from "react"
-import { SearchIcon } from "../assets/icons"
+import { SearchIcon } from "../../assets/icons"
 import styles from "./search.module.css"
 
 type Props = {

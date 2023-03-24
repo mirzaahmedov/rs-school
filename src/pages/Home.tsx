@@ -1,5 +1,5 @@
-import Search from '../features/Search';
-import Cards from "../features/Cards";
+import Search from '../features/search/Search';
+import Cards from "../features/cards/Cards";
 
 const Home = () => {
   return (

@@ -1,5 +1,5 @@
 import { Component, FormEvent, ChangeEvent } from "react"
-import { Customer } from "./Customers"
+import { Customer } from "../customers/Customers"
 
 type Props = {
   onSubmit: (customer: Customer) => void
@@ -108,39 +108,39 @@ class Form extends Component<Props, State> {
     return (
       <form onSubmit={this.handleSubmit}>
         <label className={this.state.errors.name ? "invalid" : ""} htmlFor="name">Name: {this.state.errors.name}</label>
-        <input type="text" id="name" name="name" onChange={this.handleChange("name")} />
+        <input data-testid="name" type="text" id="name" name="name" onChange={this.handleChange("name")} />
 
         <label className={this.state.errors.age ? "invalid" : ""} htmlFor="age">Age:{this.state.errors.age}</label>
-        <input type="number" id="age" name="age" onChange={this.handleChange("age")} />
+        <input data-testid="age" type="number" id="age" name="age" onChange={this.handleChange("age")} />
 
         <label className={this.state.errors.birthdate ? "invalid" : ""} htmlFor="birthdate">Birth date:{this.state.errors.birthdate}</label>
-        <input type="date" id="birthdate" name="birthdate" onChange={this.handleChange("birthdate")} />
+        <input data-testid="birthdate" type="date" id="birthdate" name="birthdate" onChange={this.handleChange("birthdate")} />
         
         <label className={this.state.errors.color ? "invalid" : ""}>Choose your favourite color:{this.state.errors.color}</label>
         <label htmlFor="color">red</label>
-        <input type="radio" id="color" name="color" value="red" onChange={this.handleChange("color")} />
+        <input data-testid="red" type="radio" id="color" name="color" value="red" onChange={this.handleChange("color")} />
         <label htmlFor="color">blue</label>
-        <input type="radio" id="color" name="color" value="blue" onChange={this.handleChange("color")} />
+        <input data-testid="blue" type="radio" id="color" name="color" value="blue" onChange={this.handleChange("color")} />
         <label htmlFor="color">green</label>
-        <input type="radio" id="color" name="color" value="green" onChange={this.handleChange("color")} />
+        <input data-testid="green" type="radio" id="color" name="color" value="green" onChange={this.handleChange("color")} />
         <label htmlFor="color">yellow</label>
-        <input type="radio" id="color" name="color" value="yellow" onChange={this.handleChange("color")} />
+        <input data-testid="yellow" type="radio" id="color" name="color" value="yellow" onChange={this.handleChange("color")} />
 
         <label className={this.state.errors.job ? "invalid" : ""} htmlFor="job">Job:{this.state.errors.job}</label>
-        <select id="job" name="job" defaultValue="" onChange={this.handleChange("job")}>
-          <option disabled hidden selected value="">Not selected</option>
+        <select data-testid="job" id="job" name="job" defaultValue="" onChange={this.handleChange("job")}>
+          <option disabled hidden value="">Not selected</option>
           <option value="developer">Developer</option>
           <option value="designer">Designer</option>
           <option value="manager">Manager</option>
         </select>
 
         <label className={this.state.errors.image ? "invalid" : ""} htmlFor="image">Image:{this.state.errors.image}</label>
-        <input type="file" id="image" name="image" onChange={this.handleFileChange("image")} />
+        <input data-testid="image" type="file" id="image" name="image" onChange={this.handleFileChange("image")} />
 
         <label className={this.state.errors.privacy ? "invalid" : ""} htmlFor="privacy">Accept privacy policy: {this.state.errors.privacy}</label>
-        <input type="checkbox" id="privacy" name="privacy" onChange={this.handleCheckboxChange("privacy")} />
+        <input data-testid="privacy" type="checkbox" id="privacy" name="privacy" onChange={this.handleCheckboxChange("privacy")} />
 
-        <button type="submit">Submit</button>
+        <button data-testid="submit" type="submit">Submit</button>
       </form>
     )
   }

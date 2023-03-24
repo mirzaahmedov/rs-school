@@ -1,5 +1,5 @@
 import { Component } from "react"
-import { ReviewIcon } from "../assets/icons";
+import { ReviewIcon } from "../../assets/icons";
 import styles from "./cards.module.css"
 
 const products = [
@@ -124,8 +124,8 @@ class Cards extends Component<Props, State> {
         {this.state.items.map(item => (
           <div className={styles.Card} key={item.id}>
             <img className={styles.Picture} src={item.image} alt={item.name} />
-            <a className={styles.Category} href="#">{item.category}</a>
-            <a className={styles.Brand} href="#">{item.brand}</a>
+            <a className={styles.Category} href="/category">{item.category}</a>
+            <a className={styles.Brand} href="/brand">{item.brand}</a>
             <h3 className={styles.Name}>{item.name}</h3>
             <p className={styles.Description}>{item.description}</p>
             <div className={styles.Details}>
