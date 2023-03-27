@@ -1,5 +1,5 @@
 import { describe, it, vi, expect } from 'vitest'
-import { render, screen } from "@testing-library/react"
+import { render, screen, fireEvent } from "@testing-library/react"
 
 import Form from './Form'
 import { Customer } from '../customers/Customers'
@@ -48,20 +48,21 @@ describe('form component', () => {
   })
   it("should submit with valid data", () => {
     const spy = vi.fn()
-    const { getByTestId } = render(<Form onSubmit={spy} />)
+
+    const get = (name: string) => (screen.getByTestId(name) as HTMLInputElement)
 
     customers.filter(customer => customer.privacy).forEach(customer => {
-      (getByTestId('name') as HTMLInputElement).value = customer.name;
-      (getByTestId('age') as HTMLInputElement).value = customer.age.toString();
-      (getByTestId('birthdate') as HTMLInputElement).value = customer.birthdate;
-      (getByTestId(customer.color) as HTMLInputElement).select();
-      (getByTestId('job') as HTMLInputElement).value = customer.job;
-      (getByTestId('privacy') as HTMLInputElement).checked = customer.privacy!;
+      const { unmount } = render(<Form onSubmit={spy} />)
 
-      const tempFile = new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' });
-      const dataTransfer = new DataTransfer();
-      dataTransfer.items.add(tempFile);
-      (getByTestId('image') as HTMLInputElement).files = dataTransfer.files;
+      fireEvent.change(get("name"), { target: { value: customer.name } })
+      fireEvent.change(get("age"), { target: { value: customer.age } })
+      fireEvent.change(get("birthdate"), { target: { value: customer.birthdate } })
+      fireEvent.click(get(customer.color))
+      fireEvent.change(get("job"), { target: { value: customer.job } })
+
+      const file = new File(['Hello World'], 'test.txt', { type: 'text/plain' });
+
+      fireEvent.change(get("image"), { target: { files: [file] } })
 
       screen.getByTestId('submit').click()
 
@@ -72,6 +73,8 @@ describe('form component', () => {
       expect(spy).toBeCalledWith(
         expect.objectContaining(result)
       )
+
+      unmount()
     })
   })
 })

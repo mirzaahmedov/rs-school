@@ -1,5 +1,7 @@
 import { Component, FormEvent, ChangeEvent } from "react"
 import { Customer } from "../customers/Customers"
+import Textfield from "../../components/Textfield"
+import Selectfield from "../../components/Selectfield"
 
 type Props = {
   onSubmit: (customer: Customer) => void
@@ -40,6 +42,7 @@ class Form extends Component<Props, State> {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleFileChange = this.handleFileChange.bind(this)
+    this.handleSelectChange = this.handleSelectChange.bind(this)
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this)
   }
 
@@ -86,9 +89,15 @@ class Form extends Component<Props, State> {
     this.props.onSubmit(customer)
 
     e.currentTarget.reset()
+    alert("Form submitted successfully!")
+  }
+  handleSelectChange(name: keyof Omit<TForm, "image" | "privacy">) {
+    return (e: ChangeEvent<HTMLSelectElement>) => {
+      this.form[name] = e.target.value
+    }
   }
   handleChange(name: keyof Omit<TForm, "image" | "privacy">) {
-    return (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    return (e: ChangeEvent<HTMLInputElement>) => {
       this.form[name] = e.target.value
     }
   }
@@ -107,38 +116,25 @@ class Form extends Component<Props, State> {
   render(){
     return (
       <form onSubmit={this.handleSubmit}>
-        <label className={this.state.errors.name ? "invalid" : ""} htmlFor="name">Name: {this.state.errors.name}</label>
-        <input data-testid="name" type="text" id="name" name="name" onChange={this.handleChange("name")} />
-
-        <label className={this.state.errors.age ? "invalid" : ""} htmlFor="age">Age:{this.state.errors.age}</label>
-        <input data-testid="age" type="number" id="age" name="age" onChange={this.handleChange("age")} />
-
-        <label className={this.state.errors.birthdate ? "invalid" : ""} htmlFor="birthdate">Birth date:{this.state.errors.birthdate}</label>
-        <input data-testid="birthdate" type="date" id="birthdate" name="birthdate" onChange={this.handleChange("birthdate")} />
+        <Textfield type="text" error={this.state.errors.name} name={"name"} onUpdate={this.handleChange} />
+        <Textfield type="number" error={this.state.errors.age} name={"age"} onUpdate={this.handleChange} />
+        <Textfield type="date" error={this.state.errors.birthdate} name={"birthdate"} onUpdate={this.handleChange} />
         
         <label className={this.state.errors.color ? "invalid" : ""}>Choose your favourite color:{this.state.errors.color}</label>
-        <label htmlFor="color">red</label>
-        <input data-testid="red" type="radio" id="color" name="color" value="red" onChange={this.handleChange("color")} />
-        <label htmlFor="color">blue</label>
-        <input data-testid="blue" type="radio" id="color" name="color" value="blue" onChange={this.handleChange("color")} />
-        <label htmlFor="color">green</label>
-        <input data-testid="green" type="radio" id="color" name="color" value="green" onChange={this.handleChange("color")} />
-        <label htmlFor="color">yellow</label>
-        <input data-testid="yellow" type="radio" id="color" name="color" value="yellow" onChange={this.handleChange("color")} />
+        <Textfield type="radio" value="red" label="red" error={""} name={"color"} onUpdate={this.handleChange} />
+        <Textfield type="radio" value="blue" label="blue" error={""} name={"color"} onUpdate={this.handleChange} />
+        <Textfield type="radio" value="green" label="green" error={""} name={"color"} onUpdate={this.handleChange} />
+        <Textfield type="radio" value="yellow" label="yellow" error={""} name={"color"} onUpdate={this.handleChange} />
 
-        <label className={this.state.errors.job ? "invalid" : ""} htmlFor="job">Job:{this.state.errors.job}</label>
-        <select data-testid="job" id="job" name="job" defaultValue="" onChange={this.handleChange("job")}>
-          <option disabled hidden value="">Not selected</option>
-          <option value="developer">Developer</option>
-          <option value="designer">Designer</option>
-          <option value="manager">Manager</option>
-        </select>
+        <Selectfield defaultValue={""} error={this.state.errors.job} name={"job"} onUpdate={this.handleSelectChange} options={[
+            { value: "developer", label: "Developer" },
+            { value: "designer", label: "Designer" },
+            { value: "manager", label: "Manager" },
+          ]} 
+        />
 
-        <label className={this.state.errors.image ? "invalid" : ""} htmlFor="image">Image:{this.state.errors.image}</label>
-        <input data-testid="image" type="file" id="image" name="image" onChange={this.handleFileChange("image")} />
-
-        <label className={this.state.errors.privacy ? "invalid" : ""} htmlFor="privacy">Accept privacy policy: {this.state.errors.privacy}</label>
-        <input data-testid="privacy" type="checkbox" id="privacy" name="privacy" onChange={this.handleCheckboxChange("privacy")} />
+        <Textfield type="file" label="Profile Image" error={this.state.errors.image} name={"image"} onUpdate={this.handleFileChange} />
+        <Textfield type="checkbox" label="Accept Privacy policy" error={this.state.errors.privacy} name={"privacy"} onUpdate={this.handleCheckboxChange} />
 
         <button data-testid="submit" type="submit">Submit</button>
       </form>
